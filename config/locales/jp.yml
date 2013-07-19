@@ -1,0 +1,53 @@
+jp:
+  
+  thanks:         "ご愛顧いただき、ありがとうございます"
+  
+  layouts:
+    application:
+      title:          "ネット書店"
+      home:           "ホーム"
+      questions:      "問題"
+      news:           "ニュース"
+      contact:        "連絡"
+      literature:     "文学"
+      economy:        "経済"
+      life:           "生活类"
+      children:       "人生"
+      technology:     "テク" 
+      
+  store:
+    index:
+      title_html:   "カタログ"
+      add_html:     "加える"
+      detail:       "詳細"
+      
+    show:
+      add_html:     "加える"
+      back:         "復帰"
+  
+  carts:
+    cart:
+      title:      "あなたのカート"
+      empty:      "空の"
+      checkout:   "決済"
+      ifsure:     "決定する?"
+      
+  number:
+    currency:
+      format:
+        unit:      "￥"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format:    "%u%n"
+        
+  orders:
+    new:
+      legend:         "メッセージを入力"
+    form:
+      name:           "フルネーム"
+      address_html:   "アドレス"
+      email:          "メールボックス"
+      pay_type:       "支払い"
+      pay_prompt_html: "お支払方法を選択してください"
+      submit:          "注文を送信"

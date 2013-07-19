@@ -1,0 +1,29 @@
+<table>
+	<th>ID</th>
+	<th>Title</th>
+	<th>Num</th>
+	<th> </th>
+	<th>Price</th>
+	<% @cart.line_items.each do |item| %>
+		<tr>
+			<%= form_tag do %>
+				<td>
+					<%= text_field_tag 'id', nil, value: item.id, size: 2 %>
+				</td>
+				<td><%= item.product.title %></td>
+				<td>
+					<%= text_field_tag 'quantity', nil, value: item.quantity, size: 1 %>
+				</td>
+				<td>
+					<%= submit_tag 'Update'%>
+				</td>
+			<% end %>
+			<td><%= number_to_currency(item.total_price) %></td>
+		</tr>
+	<% end %>
+	<tr class="total_line">
+		<td colspan="4">Total</td>
+		<td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+	</tr>
+</table>
+<div><%= button_to 'Confirm', new_order_path, method: :get %></div>

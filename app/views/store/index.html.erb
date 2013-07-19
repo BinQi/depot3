@@ -1,0 +1,21 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<h1><%= t('.title_html' ) %></h1>
+
+<% @products.each do |product|%>
+	<div class="entry" background="red">
+		<%= image_tag(product.image_url) %>
+		<h3><%= product.title %></h3>
+		<%= sanitize(truncate(product.description, length: 80)) %>
+		<div class="price_line">
+			<span class="price"><%= number_to_currency(product.price) %></span>
+			<%= button_to t('.add_html'), line_items_path(product_id: product), 
+				remote: true %>
+			<%= link_to t('.detail'), controller: 'store', action: :show, id: product %>
+		</div>
+	</div>
+<% end %>
+<% if @products.class == ActiveRecord::Relation %>
+<p><%= will_paginate @products %></p>
+<% end %>

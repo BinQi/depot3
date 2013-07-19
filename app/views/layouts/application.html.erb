@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pragmatic Books Online Store</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class='<%= controller.controller_name %>'>
+
+	<div id="banner">
+		<%= form_tag store_path, class: 'locale' do %>
+			<%= select_tag 'set_locale',
+				options_for_select(LANGUAGES, I18n.locale.to_s),
+				onchange: 'this.form.submit()' %>
+			<%= submit_tag 'submit'%>
+			<%= javascript_tag "$('.locale input').hide()" %>
+		<% end %>
+		<%= image_tag("logo.png") %>
+		<%= @page_title || t('.title') %>
+	</div>
+	<div id="columns">
+		<div id="side">
+			<%= form_tag store_path do %>
+			<div>
+	 			<%= text_field_tag 'bookName', params[:bookName], size: 14%>
+	 		</div>
+	 		<div>
+	 		<%= submit_tag "Search" %>
+	 		</div>
+	 		<% end %>
+	 		
+			<% if @cart %>
+				<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+					<%= render @cart %>
+				<% end %>
+			<% end %>
+			<ul>
+				<li> <a href="/"><%= t('.home') %></a> </li>
+				<li> <a href="http://www.baidu.com"><%= t('.questions') %></a> </li>
+				<li> <a href="http://www.google.com.hk"><%= t('.news') %></a> </li>
+				<li> <a href="http://www.baidu.com"><%= t('.contact') %></a> </li>
+			</ul>
+			<ul>
+				<li> <%= link_to t('.literature'), store_path(genre: "literature") %> </li>
+				<li> <%= link_to t('.economy'), store_path(genre: "economy") %> </li>
+				<li> <%= link_to t('.life'), store_path(genre: "life") %> </li>
+				<li> <%= link_to t('.children'), store_path(genre: "children") %> </li>
+				<li> <%= link_to t('.technology'), store_path(genre: "technology") %> </li>
+			</ul>
+			<% if session[:user_id] %>
+			<ul>
+				<li><%= link_to 'Orders', orders_path %></li>
+				<li><%= link_to 'Products', products_path %></li>
+				<li><%= link_to 'Users', users_path %></li>
+			</ul>
+			
+			<%= button_to 'Logout', logout_path, method: :delete %>
+			<% end %>
+		</div>
+		<div id="main">
+			<%= yield %>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<%= image_tag(@product.image_url) %>
+<p>
+  <b>Title:</b>
+  <h3><%= @product.title %></h3>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= sanitize(@product.description) %>
+</p>
+
+<p>
+  <b>Genre:</b>
+  <%= @product.genre %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= number_to_currency(@product.price) %>
+</p>
+
+<div class="field">
+<%= button_to t('.add_html'), line_items_path(product_id: @product), remote: true %>
+</div>
+<%= link_to t('.back'), store_path %>
+
+
